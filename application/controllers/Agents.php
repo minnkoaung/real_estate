@@ -11,9 +11,7 @@ class Agents extends CI_Controller {
     public function index()
     {
         $query = $this->Agents_model->get_last_ten_agents(); 
-        var_dump ($query);
-       // echo "This is agent controller";
-       
+        var_dump ($query);       
     }
 
      public function create_agents() {
@@ -41,23 +39,37 @@ class Agents extends CI_Controller {
         ]);
     }
 
-    public function update_agents() {
-        $id = "7";
-        $name = "koko2";
-        $parent = "Housing";
-        $updated_at = date('Y-m-d H:i:s');
-        $updated_by = "2";
-        $this->Type_model->update_types([
-            'name' => $name,
-            'parent' => $parent,
+     public function update_agents() {
+        $id = 6 ;
+        $company     = "MK Enterpirse 2";
+        $company_address = "Warshinton DC,USA";
+        $description = "Some Description2";
+        $profile_photo = "MyPhoto.jpg";
+        $contact_phone = "0998989898";
+        $contact_email = "user@zmail.com";
+        $user_id = "00001";
+        $created_at = date('Y-m-d H:i:s');
+        $updated_at = "";
+        $verified = "0";
+        $requested_data = [
+            'id' => 6,
+            'company' => $company,
+            'company_address' => $company_address,
+            'description' => $description,
+            'profile_photo' => $profile_photo,
+            'contact_phone' => $contact_phone,
+            'contact_email' => $contact_email,
+            'user_id' => $user_id,
+            'created_at' => $created_at,
             'updated_at' => $updated_at,
-            'updated_by' => $updated_by
-        ],$id); 
+            'verified' => $verified
+        ];
+        $this->Agents_model->update_agents($requested_data,$id); 
     }
 
-    public function delete_types(){
-        $id = 6;
-        $this->Type_model->delete_types($id);
+    public function delete_agents(){
+        $id = 3;
+        $this->Agents_model->delete_agents($id);
     }  
 }   
 ?>
