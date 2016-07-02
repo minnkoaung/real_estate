@@ -8,17 +8,43 @@ class Type extends CI_Controller {
 		$this->load->model('Type_model');
 	}
 
-    public function create()
+    public function index()
 	{
-        // $data['name'] = "8Minn Ko Aung";
-        // $data['parent'] = "Minn Ko Aung";  
-        // $data['updated_by'] = "Minn Ko Aung";  
-        $this->Type_model->insert_type();
+        $query = $this->Type_model->get_last_ten_types(); 
+        var_dump ($query);
        
     }
+
+    public function create_types() {
+        $name = "koko";
+        $parent = "Housing";
+        $updated_at = "date('Y-m-d H:i:s')";
+        $updated_by = "2";
+        $this->Type_model->create_types([
+            'name' => $name,
+            'parent' => $parent,
+            'updated_at' => $updated_at,
+            'updated_by' => $updated_by
+        ]); 
+    }
+
+    public function update_types() {
+        $id = "7";
+        $name = "koko2";
+        $parent = "Housing";
+        $updated_at = date('Y-m-d H:i:s');
+        $updated_by = "2";
+        $this->Type_model->update_types([
+            'name' => $name,
+            'parent' => $parent,
+            'updated_at' => $updated_at,
+            'updated_by' => $updated_by
+        ],$id); 
+    }
+
+    public function delete_types(){
+        $id = 6;
+        $this->Type_model->delete_types($id);
+    }   
 }   
-
-
-
-
 ?>
